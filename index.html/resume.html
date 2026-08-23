@@ -1,0 +1,2383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="K B Sharath - Embedded System Engineer Portfolio">
+
+    <title>K B Sharath | Embedded Systems Lab</title>
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #070b14;
+            color: #e6edf7;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =====================================================
+           BACKGROUND GRID
+        ===================================================== */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(56, 189, 248, 0.035) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(56, 189, 248, 0.035) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            pointer-events: none;
+
+            z-index: -2;
+        }
+
+
+        /* =====================================================
+           GLOW
+        ===================================================== */
+
+        .glow {
+            position: fixed;
+
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            background: rgba(14, 165, 233, 0.08);
+
+            filter: blur(80px);
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+        .glow.one {
+            top: 5%;
+            right: -100px;
+        }
+
+        .glow.two {
+            bottom: 10%;
+            left: -120px;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        header {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            z-index: 1000;
+
+            background: rgba(7, 11, 20, 0.88);
+
+            backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid rgba(56, 189, 248, 0.12);
+        }
+
+        .navbar {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 17px 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+
+            border: 1px solid #38bdf8;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            color: #38bdf8;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+            border-radius: 6px;
+        }
+
+        .brand-name {
+            font-size: 18px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+        .brand-name span {
+            color: #38bdf8;
+        }
+
+        .nav-links {
+            display: flex;
+
+            list-style: none;
+
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+
+            color: #aab8ca;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        .menu-btn {
+            display: none;
+
+            background: none;
+
+            border: none;
+
+            color: #38bdf8;
+
+            font-size: 28px;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 100vh;
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 150px 25px 80px;
+
+            display: grid;
+
+            grid-template-columns: 1.3fr 0.7fr;
+
+            align-items: center;
+
+            gap: 50px;
+        }
+
+        .system-status {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 7px 13px;
+
+            border: 1px solid rgba(56, 189, 248, 0.25);
+
+            background: rgba(56, 189, 248, 0.05);
+
+            border-radius: 20px;
+
+            color: #8ca0b8;
+
+            font-size: 12px;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 25px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #22c55e;
+
+            box-shadow:
+                0 0 10px #22c55e;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 78px);
+
+            line-height: 1.02;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero-title {
+            color: #b7c5d8;
+
+            font-size: clamp(20px, 3vw, 28px);
+
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            max-width: 700px;
+
+            color: #8797ab;
+
+            font-size: 17px;
+
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 21px;
+
+            border-radius: 6px;
+
+            border: 1px solid #38bdf8;
+
+            color: #38bdf8;
+
+            font-weight: 600;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .btn.primary {
+            background: #38bdf8;
+
+            color: #06101c;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 25px rgba(56, 189, 248, 0.18);
+        }
+
+
+        /* =====================================================
+           ENGINEERING TERMINAL
+        ===================================================== */
+
+        .terminal {
+            background: #0b111d;
+
+            border: 1px solid rgba(56, 189, 248, 0.2);
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.35);
+        }
+
+        .terminal-top {
+            height: 42px;
+
+            padding: 0 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            background: #0e1624;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .terminal-circle {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #475569;
+        }
+
+        .terminal-title {
+            margin-left: 8px;
+
+            color: #64748b;
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+        }
+
+        .terminal-body {
+            padding: 25px;
+
+            font-family: Consolas, monospace;
+
+            font-size: 13px;
+        }
+
+        .terminal-line {
+            margin-bottom: 14px;
+        }
+
+        .terminal-key {
+            color: #38bdf8;
+        }
+
+        .terminal-value {
+            color: #cbd5e1;
+        }
+
+        .terminal-green {
+            color: #4ade80;
+        }
+
+        .terminal-yellow {
+            color: #facc15;
+        }
+
+        .cursor {
+            display: inline-block;
+
+            width: 7px;
+            height: 15px;
+
+            background: #38bdf8;
+
+            vertical-align: middle;
+
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+
+        /* =====================================================
+           SECTION
+        ===================================================== */
+
+        .section {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 100px 25px;
+        }
+
+        .section-label {
+            color: #38bdf8;
+
+            font-family: Consolas, monospace;
+
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 40px;
+
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: #38bdf8;
+        }
+
+
+        /* =====================================================
+           ABOUT
+        ===================================================== */
+
+        .about-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 30px;
+        }
+
+        .about-card {
+            background: rgba(11, 17, 29, 0.8);
+
+            border: 1px solid rgba(56, 189, 248, 0.12);
+
+            border-radius: 10px;
+
+            padding: 30px;
+
+            transition: 0.3s;
+        }
+
+        .about-card:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+
+            transform: translateY(-4px);
+        }
+
+        .about-card h3 {
+            color: #38bdf8;
+
+            margin-bottom: 15px;
+
+            font-size: 20px;
+        }
+
+        .about-card p {
+            color: #93a4b8;
+
+            font-size: 15px;
+
+            margin-bottom: 14px;
+        }
+
+        .highlight {
+            color: #e2e8f0;
+        }
+
+
+        /* =====================================================
+           ENGINEERING STATS
+        ===================================================== */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        .stat {
+            padding: 20px;
+
+            text-align: center;
+
+            background: #0b111d;
+
+            border: 1px solid rgba(56, 189, 248, 0.1);
+
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 25px;
+
+            font-weight: bold;
+
+            color: #38bdf8;
+        }
+
+        .stat-label {
+            font-size: 11px;
+
+            color: #718198;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =====================================================
+           SKILLS
+        ===================================================== */
+
+        .skill-category {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #cbd5e1;
+
+            font-size: 17px;
+
+            margin-bottom: 18px;
+        }
+
+        .category-title::before {
+            content: "";
+
+            width: 4px;
+
+            height: 20px;
+
+            background: #38bdf8;
+
+            border-radius: 3px;
+        }
+
+        .skills-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .skill {
+            background: #0b111d;
+
+            border: 1px solid rgba(56, 189, 248, 0.12);
+
+            border-radius: 8px;
+
+            padding: 22px;
+
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            border-color: #38bdf8;
+
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 24px;
+
+            margin-bottom: 10px;
+        }
+
+        .skill h4 {
+            font-size: 15px;
+
+            margin-bottom: 4px;
+        }
+
+        .skill p {
+            color: #718198;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           PROJECTS
+        ===================================================== */
+
+        .projects {
+            background: rgba(11, 17, 29, 0.45);
+
+            border-top: 1px solid rgba(56, 189, 248, 0.06);
+
+            border-bottom: 1px solid rgba(56, 189, 248, 0.06);
+        }
+
+        .project-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+        .project {
+            position: relative;
+
+            background: #0b111d;
+
+            border: 1px solid rgba(56, 189, 248, 0.13);
+
+            border-radius: 12px;
+
+            padding: 28px;
+
+            transition: 0.35s;
+
+            overflow: hidden;
+        }
+
+        .project::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            height: 2px;
+
+            background: #38bdf8;
+
+            transform: scaleX(0);
+
+            transform-origin: left;
+
+            transition: 0.35s;
+        }
+
+        .project:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+
+            border-color: rgba(56, 189, 248, 0.4);
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .project-number {
+            color: #38bdf8;
+
+            font-family: Consolas, monospace;
+
+            font-size: 12px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 20px;
+        }
+
+        .project h3 {
+            font-size: 21px;
+
+            margin-bottom: 15px;
+        }
+
+        .project p {
+            color: #8b9bb0;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+        }
+
+        .architecture {
+            padding: 15px;
+
+            background: #070b14;
+
+            border-radius: 7px;
+
+            margin-bottom: 18px;
+
+            font-family: Consolas, monospace;
+
+            font-size: 11px;
+
+            color: #94a3b8;
+        }
+
+        .architecture span {
+            color: #38bdf8;
+        }
+
+        .tech {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+        }
+
+        .tech span {
+            padding: 5px 8px;
+
+            background: rgba(56, 189, 248, 0.07);
+
+            color: #7dd3fc;
+
+            border: 1px solid rgba(56, 189, 248, 0.12);
+
+            border-radius: 4px;
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           EDUCATION TIMELINE
+        ===================================================== */
+
+        .timeline {
+            position: relative;
+
+            max-width: 850px;
+
+            margin: auto;
+
+            padding-left: 35px;
+        }
+
+        .timeline::before {
+            content: "";
+
+            position: absolute;
+
+            left: 8px;
+
+            top: 0;
+            bottom: 0;
+
+            width: 1px;
+
+            background: rgba(56, 189, 248, 0.3);
+        }
+
+        .education-item {
+            position: relative;
+
+            background: #0b111d;
+
+            border: 1px solid rgba(56, 189, 248, 0.12);
+
+            padding: 25px;
+
+            border-radius: 9px;
+
+            margin-bottom: 25px;
+        }
+
+        .education-item::before {
+            content: "";
+
+            position: absolute;
+
+            left: -32px;
+
+            top: 28px;
+
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #38bdf8;
+
+            box-shadow:
+                0 0 12px #38bdf8;
+        }
+
+        .education-year {
+            color: #38bdf8;
+
+            font-family: Consolas, monospace;
+
+            font-size: 12px;
+
+            margin-bottom: 7px;
+        }
+
+        .education-item h3 {
+            font-size: 19px;
+
+            margin-bottom: 5px;
+        }
+
+        .education-item p {
+            color: #8292a7;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           STRENGTHS
+        ===================================================== */
+
+        .strength-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 12px;
+        }
+
+        .strength {
+            text-align: center;
+
+            padding: 20px 10px;
+
+            background: #0b111d;
+
+            border: 1px solid rgba(56, 189, 248, 0.1);
+
+            border-radius: 7px;
+
+            color: #a8b5c5;
+
+            font-size: 12px;
+
+            transition: 0.3s;
+        }
+
+        .strength:hover {
+            color: #38bdf8;
+
+            border-color: #38bdf8;
+        }
+
+
+        /* =====================================================
+           CONNECT
+        ===================================================== */
+
+        .connect {
+            text-align: center;
+
+            padding-bottom: 120px;
+        }
+
+        .connect-box {
+            max-width: 750px;
+
+            margin: auto;
+
+            padding: 50px 30px;
+
+            background: #0b111d;
+
+            border: 1px solid rgba(56, 189, 248, 0.2);
+
+            border-radius: 12px;
+        }
+
+        .connect-box h2 {
+            font-size: 32px;
+
+            margin-bottom: 12px;
+        }
+
+        .connect-box p {
+            color: #8292a7;
+
+            margin-bottom: 30px;
+        }
+
+        .contact-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            border-top: 1px solid rgba(56, 189, 248, 0.1);
+
+            padding: 25px;
+
+            text-align: center;
+
+            color: #59687c;
+
+            font-size: 12px;
+        }
+
+        footer span {
+            color: #38bdf8;
+        }
+
+
+        /* =====================================================
+           SCROLL ANIMATION
+        ===================================================== */
+
+        .reveal {
+            opacity: 0;
+
+            transform: translateY(25px);
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .terminal {
+                max-width: 650px;
+
+                width: 100%;
+
+                margin: auto;
+            }
+
+            .skills-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .strength-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .nav-links {
+                display: none;
+
+                position: absolute;
+
+                top: 72px;
+
+                left: 0;
+
+                width: 100%;
+
+                background: #070b14;
+
+                flex-direction: column;
+
+                gap: 0;
+
+                text-align: center;
+
+                border-bottom:
+                    1px solid rgba(56, 189, 248, 0.15);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                padding: 14px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .navbar {
+                padding: 15px 18px;
+            }
+
+            .brand-name {
+                font-size: 15px;
+            }
+
+            .hero {
+                padding:
+                    130px 18px 70px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+
+                letter-spacing: -1px;
+            }
+
+            .section {
+                padding: 75px 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .strength-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Background glow -->
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <a href="#home" class="brand">
+
+                <div class="brand-icon">
+                    KB
+                </div>
+
+                <div class="brand-name">
+                    K B <span>SHARATH</span>
+                </div>
+
+            </a>
+
+
+            <ul class="nav-links" id="navLinks">
+
+                <li>
+                    <a href="#home">LAB</a>
+                </li>
+
+                <li>
+                    <a href="#about">ABOUT</a>
+                </li>
+
+                <li>
+                    <a href="#skills">SKILLS</a>
+                </li>
+
+                <li>
+                    <a href="#projects">SYSTEMS</a>
+                </li>
+
+                <li>
+                    <a href="#education">JOURNEY</a>
+                </li>
+
+                <li>
+                    <a href="#contact">CONNECT</a>
+                </li>
+
+            </ul>
+
+
+            <button
+                class="menu-btn"
+                onclick="toggleMenu()">
+
+                ☰
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         HERO / LAB
+    ====================================================== -->
+
+    <main>
+
+        <section id="home" class="hero">
+
+
+            <div class="hero-content">
+
+
+                <div class="system-status">
+
+                    <span class="status-dot"></span>
+
+                    SYSTEM STATUS: ONLINE
+
+                </div>
+
+
+                <h1>
+
+                    K B <span>SHARATH</span>
+
+                </h1>
+
+
+                <h2 class="hero-title">
+
+                    Embedded System Engineer
+
+                </h2>
+
+
+                <p class="hero-description">
+
+                    Electronics & Communication Engineering student
+                    focused on embedded systems, IoT, digital electronics
+                    and practical hardware-software solutions.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="#projects"
+                        class="btn primary">
+
+                        EXPLORE SYSTEMS
+
+                    </a>
+
+
+                    <a
+                        href="#contact"
+                        class="btn">
+
+                        CONNECT WITH ME
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Engineering terminal -->
+
+            <div class="terminal">
+
+                <div class="terminal-top">
+
+                    <span class="terminal-circle"></span>
+
+                    <span class="terminal-circle"></span>
+
+                    <span class="terminal-circle"></span>
+
+                    <span class="terminal-title">
+                        embedded_systems_lab
+                    </span>
+
+                </div>
+
+
+                <div class="terminal-body">
+
+
+                    <div class="terminal-line">
+
+                        <span class="terminal-key">
+                            $ engineer
+                        </span>
+
+                    </div>
+
+
+                    <div class="terminal-line">
+
+                        name =
+                        <span class="terminal-value">
+                            "K B Sharath"
+                        </span>
+
+                    </div>
+
+
+                    <div class="terminal-line">
+
+                        role =
+                        <span class="terminal-value">
+                            "Embedded System Engineer"
+                        </span>
+
+                    </div>
+
+
+                    <div class="terminal-line">
+
+                        domain =
+                        <span class="terminal-value">
+                            "IoT / Embedded / Electronics"
+                        </span>
+
+                    </div>
+
+
+                    <div class="terminal-line">
+
+                        projects =
+                        <span class="terminal-yellow">
+                            03
+                        </span>
+
+                    </div>
+
+
+                    <div class="terminal-line">
+
+                        education =
+                        <span class="terminal-value">
+                            "B.E. ECE"
+                        </span>
+
+                    </div>
+
+
+                    <div class="terminal-line">
+
+                        graduation =
+                        <span class="terminal-value">
+                            "2027"
+                        </span>
+
+                    </div>
+
+
+                    <div class="terminal-line">
+
+                        status =
+                        <span class="terminal-green">
+                            READY_TO_BUILD
+                        </span>
+
+                    </div>
+
+
+                    <div class="terminal-line">
+
+                        <span class="terminal-key">
+                            $
+                        </span>
+
+                        <span class="cursor"></span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             ABOUT
+        ====================================================== -->
+
+        <section id="about" class="section reveal">
+
+            <div class="section-label">
+                01 / PROFILE
+            </div>
+
+            <h2 class="section-title">
+                About <span>Me</span>
+            </h2>
+
+
+            <div class="about-grid">
+
+
+                <div class="about-card">
+
+                    <h3>
+                        Who I Am
+                    </h3>
+
+
+                    <p>
+
+                        I am K B Sharath, an Electronics &
+                        Communication Engineering student currently
+                        pursuing my B.E. at Rajeev Institute of
+                        Technology, Hassan.
+
+                    </p>
+
+
+                    <p>
+
+                        I have a strong interest in
+                        <span class="highlight">
+                            embedded systems, digital electronics,
+                            IoT and practical project development.
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        I enjoy combining hardware and software
+                        to develop solutions for real-world problems.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="about-card">
+
+                    <h3>
+                        Engineering Focus
+                    </h3>
+
+
+                    <p>
+
+                        My project experience includes ESP32-based
+                        IoT systems, Raspberry Pi robotics,
+                        environmental monitoring and sensor-based
+                        automation.
+
+                    </p>
+
+
+                    <p>
+
+                        I am also interested in
+                        <span class="highlight">
+                            VLSI design and digital electronics,
+                        </span>
+                        and continue to develop my technical
+                        knowledge through hands-on work.
+
+                    </p>
+
+
+                    <div class="stats">
+
+                        <div class="stat">
+
+                            <div class="stat-number">
+                                03
+                            </div>
+
+                            <div class="stat-label">
+                                Projects
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat">
+
+                            <div class="stat-number">
+                                C
+                            </div>
+
+                            <div class="stat-label">
+                                Core Language
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat">
+
+                            <div class="stat-number">
+                                IoT
+                            </div>
+
+                            <div class="stat-label">
+                                Domain
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat">
+
+                            <div class="stat-number">
+                                2027
+                            </div>
+
+                            <div class="stat-label">
+                                Graduation
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             SKILLS
+        ====================================================== -->
+
+        <section id="skills" class="section reveal">
+
+            <div class="section-label">
+                02 / TOOLBOX
+            </div>
+
+            <h2 class="section-title">
+                Technical <span>Skills</span>
+            </h2>
+
+
+            <!-- Programming -->
+
+            <div class="skill-category">
+
+                <h3 class="category-title">
+                    Programming
+                </h3>
+
+
+                <div class="skills-grid">
+
+
+                    <div class="skill">
+
+                        <div class="skill-icon">
+                            C
+                        </div>
+
+                        <h4>
+                            C Programming
+                        </h4>
+
+                        <p>
+                            Programming Language
+                        </p>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-icon">
+                            Py
+                        </div>
+
+                        <h4>
+                            Python
+                        </h4>
+
+                        <p>
+                            Programming & Scripting
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Engineering Tools -->
+
+            <div class="skill-category">
+
+                <h3 class="category-title">
+                    Engineering Tools
+                </h3>
+
+
+                <div class="skills-grid">
+
+
+                    <div class="skill">
+
+                        <div class="skill-icon">
+                            ⚙
+                        </div>
+
+                        <h4>
+                            Arduino IDE
+                        </h4>
+
+                        <p>
+                            Embedded Development
+                        </p>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-icon">
+                            LV
+                        </div>
+
+                        <h4>
+                            LabVIEW
+                        </h4>
+
+                        <p>
+                            Engineering Tool
+                        </p>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-icon">
+                            AN
+                        </div>
+
+                        <h4>
+                            Ansys
+                        </h4>
+
+                        <p>
+                            Engineering Simulation
+                        </p>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-icon">
+                            MX
+                        </div>
+
+                        <h4>
+                            MATLAB
+                        </h4>
+
+                        <p>
+                            Engineering Computing
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Computer Skills -->
+
+            <div class="skill-category">
+
+                <h3 class="category-title">
+                    Computer Skills
+                </h3>
+
+
+                <div class="skills-grid">
+
+
+                    <div class="skill">
+
+                        <div class="skill-icon">
+                            XL
+                        </div>
+
+                        <h4>
+                            MS Excel
+                        </h4>
+
+                        <p>
+                            Data & Spreadsheet Work
+                        </p>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-icon">
+                            WD
+                        </div>
+
+                        <h4>
+                            MS Word
+                        </h4>
+
+                        <p>
+                            Documentation
+                        </p>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-icon">
+                            PP
+                        </div>
+
+                        <h4>
+                            PowerPoint
+                        </h4>
+
+                        <p>
+                            Presentations
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PROJECTS
+        ====================================================== -->
+
+        <section id="projects" class="projects">
+
+            <div class="section reveal">
+
+                <div class="section-label">
+                    03 / SYSTEMS
+                </div>
+
+                <h2 class="section-title">
+                    Things I've <span>Built</span>
+                </h2>
+
+
+                <div class="project-grid">
+
+
+                    <!-- Project 1 -->
+
+                    <article class="project">
+
+                        <div class="project-number">
+                            SYSTEM_01
+                        </div>
+
+
+                        <h3>
+                            Air Quality Monitoring & Control
+                        </h3>
+
+
+                        <p>
+
+                            Developed an ESP32-based IoT system
+                            for real-time monitoring of air quality,
+                            temperature, humidity and particulate matter.
+                            Blynk was used for remote monitoring and
+                            automated relay control.
+
+                        </p>
+
+
+                        <div class="architecture">
+
+                            Sensors
+
+                            <span>→</span>
+
+                            ESP32
+
+                            <span>→</span>
+
+                            Blynk
+
+                            <span>→</span>
+
+                            Relay Control
+
+                        </div>
+
+
+                        <div class="tech">
+
+                            <span>ESP32</span>
+
+                            <span>IoT</span>
+
+                            <span>Blynk</span>
+
+                            <span>Sensors</span>
+
+                            <span>Relay</span>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- Project 2 -->
+
+                    <article class="project">
+
+                        <div class="project-number">
+                            SYSTEM_02
+                        </div>
+
+
+                        <h3>
+                            Child Borewell Rescue System
+                        </h3>
+
+
+                        <p>
+
+                            Developed a Raspberry Pi-based robotic
+                            rescue system using a camera, robotic arm
+                            and servo motors for real-time monitoring
+                            and assistance during borewell rescue
+                            operations.
+
+                        </p>
+
+
+                        <div class="architecture">
+
+                            Camera
+
+                            <span>→</span>
+
+                            Raspberry Pi
+
+                            <span>→</span>
+
+                            Robotic Arm
+
+                            <span>→</span>
+
+                            Remote Control
+
+                        </div>
+
+
+                        <div class="tech">
+
+                            <span>Raspberry Pi</span>
+
+                            <span>Camera</span>
+
+                            <span>Robotics</span>
+
+                            <span>Servo Motors</span>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- Project 3 -->
+
+                    <article class="project">
+
+                        <div class="project-number">
+                            SYSTEM_03
+                        </div>
+
+
+                        <h3>
+                            Rain Detection & Environment Monitoring
+                        </h3>
+
+
+                        <p>
+
+                            Developed an ESP32-based IoT system
+                            to monitor rainfall and environmental
+                            conditions using rain and LDR sensors.
+                            Blynk provides real-time monitoring and
+                            relay control.
+
+                        </p>
+
+
+                        <div class="architecture">
+
+                            Rain Sensor
+
+                            <span>+</span>
+
+                            LDR
+
+                            <span>→</span>
+
+                            ESP32
+
+                            <span>→</span>
+
+                            Blynk
+
+                        </div>
+
+
+                        <div class="tech">
+
+                            <span>ESP32</span>
+
+                            <span>Rain Sensor</span>
+
+                            <span>LDR</span>
+
+                            <span>Blynk</span>
+
+                            <span>IoT</span>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             EDUCATION
+        ====================================================== -->
+
+        <section id="education" class="section reveal">
+
+            <div class="section-label">
+                04 / JOURNEY
+            </div>
+
+            <h2 class="section-title">
+                Education <span>Timeline</span>
+            </h2>
+
+
+            <div class="timeline">
+
+
+                <div class="education-item">
+
+                    <div class="education-year">
+                        2023 — 2027
+                    </div>
+
+                    <h3>
+                        B.E. Electronics & Communication Engineering
+                    </h3>
+
+                    <p>
+                        Rajeev Institute of Technology – Hassan
+                    </p>
+
+                    <p>
+                        Current CGPA: 7.78
+                    </p>
+
+                </div>
+
+
+
+                <div class="education-item">
+
+                    <div class="education-year">
+                        2023
+                    </div>
+
+                    <h3>
+                        PUC
+                    </h3>
+
+                    <p>
+                        St Joseph College – Chikkamagaluru
+                    </p>
+
+                    <p>
+                        Percentage: 85%
+                    </p>
+
+                </div>
+
+
+
+                <div class="education-item">
+
+                    <div class="education-year">
+                        2021
+                    </div>
+
+                    <h3>
+                        SSLC
+                    </h3>
+
+                    <p>
+                        Vasavi Vidyalaya – Chikkamagaluru
+                    </p>
+
+                    <p>
+                        Percentage: 85.6%
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             STRENGTHS
+        ====================================================== -->
+
+        <section class="section reveal">
+
+            <div class="section-label">
+                05 / PERSONAL
+            </div>
+
+            <h2 class="section-title">
+                Beyond <span>Technical</span>
+            </h2>
+
+
+            <div class="strength-grid">
+
+                <div class="strength">
+                    Creative Problem Solving
+                </div>
+
+                <div class="strength">
+                    Quick Learner
+                </div>
+
+                <div class="strength">
+                    Communication
+                </div>
+
+                <div class="strength">
+                    Time Management
+                </div>
+
+                <div class="strength">
+                    Adaptability
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             LANGUAGES
+        ====================================================== -->
+
+        <section class="section reveal">
+
+            <div class="section-label">
+                06 / COMMUNICATION
+            </div>
+
+            <h2 class="section-title">
+                Languages <span>I Speak</span>
+            </h2>
+
+
+            <div class="skills-grid">
+
+                <div class="skill">
+
+                    <div class="skill-icon">
+                        EN
+                    </div>
+
+                    <h4>
+                        English
+                    </h4>
+
+                    <p>
+                        Communication
+                    </p>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-icon">
+                        HI
+                    </div>
+
+                    <h4>
+                        Hindi
+                    </h4>
+
+                    <p>
+                        Communication
+                    </p>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-icon">
+                        KN
+                    </div>
+
+                    <h4>
+                        Kannada
+                    </h4>
+
+                    <p>
+                        Communication
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
+
+        <section id="contact" class="section connect reveal">
+
+            <div class="connect-box">
+
+
+                <div class="section-label">
+                    07 / CONNECTION
+                </div>
+
+
+                <h2>
+                    Let's <span>Connect</span>
+                </h2>
+
+
+                <p>
+
+                    Interested in embedded systems, IoT,
+                    electronics and engineering opportunities?
+                    Feel free to connect with me.
+
+                </p>
+
+
+                <div class="contact-buttons">
+
+
+                    <a
+                        href="mailto:kbsharathgowda6@gamil.com"
+                        class="btn primary">
+
+                        ✉ EMAIL ME
+
+                    </a>
+
+
+                    <a
+                        href="https://www.linkedin.com/in/kb-sharath-b8b51632a/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn">
+
+                        ↗ LINKEDIN
+
+                    </a>
+
+                </div>
+
+
+                <p style="margin-top: 25px; margin-bottom: 0;">
+
+                    kbsharathgowda6@gamil.com
+
+                </p>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <p>
+
+            © 2026 <span>K B Sharath</span> |
+
+            Embedded Systems Lab
+
+        </p>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+
+        /* ==========================================
+           MOBILE MENU
+        ========================================== */
+
+        function toggleMenu() {
+
+            const nav =
+                document.getElementById("navLinks");
+
+            nav.classList.toggle("active");
+
+        }
+
+
+        /* Close menu after clicking a link */
+
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(function(link) {
+
+                link.addEventListener(
+                    "click",
+                    function() {
+
+                        document
+                            .getElementById("navLinks")
+                            .classList.remove("active");
+
+                    }
+                );
+
+            });
+
+
+
+        /* ==========================================
+           SCROLL REVEAL
+        ========================================== */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+
+        function revealOnScroll() {
+
+            revealElements.forEach(
+                function(element) {
+
+                    const position =
+                        element
+                        .getBoundingClientRect()
+                        .top;
+
+
+                    if (
+                        position <
+                        window.innerHeight - 80
+                    ) {
+
+                        element
+                            .classList
+                            .add("active");
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        window.addEventListener(
+            "scroll",
+            revealOnScroll
+        );
+
+
+        /* Run once at startup */
+
+        revealOnScroll();
+
+
+    </script>
+
+
+</body>
+
+</html>
