@@ -724,6 +724,37 @@
                 0 20px 50px rgba(0, 0, 0, 0.25);
         }
 
+        .project-actions {
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-github {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border: 1px solid #38bdf8;
+            border-radius: 6px;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.04);
+            font-family: Consolas, monospace;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .project-github:hover {
+            transform: translateY(-2px);
+            background: #38bdf8;
+            color: #06101c;
+            box-shadow: 0 8px 24px rgba(56, 189, 248, 0.16);
+        }
+
         .project-number {
             color: #38bdf8;
 
@@ -1861,6 +1892,12 @@
 
                         </div>
 
+                        <div class="project-actions">
+                            <a class="project-github" href="https://github.com/kbsharath7/air-quality-monitoring" target="_blank" rel="noopener noreferrer">
+                                View on GitHub ↗
+                            </a>
+                        </div>
+
                     </article>
 
 
@@ -1981,6 +2018,12 @@
 
                             <span>IoT</span>
 
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-github" href="https://github.com/kbsharath7/rain-detection-environment-monitoring" target="_blank" rel="noopener noreferrer">
+                                View on GitHub ↗
+                            </a>
                         </div>
 
                     </article>
